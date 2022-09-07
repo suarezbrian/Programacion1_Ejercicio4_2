@@ -15,7 +15,7 @@ pudo realizar la suma y cero en caso de no haberla podido realizar.
 #include <stdio.h>
 #include <stdlib.h>
 
-void suma(int numeroA, int numeroB, int* resultado);
+int suma(int numeroA, int numeroB, int* resultado);
 int ingresarNumero();
 
 int main()
@@ -24,20 +24,40 @@ int main()
 	int numeroA;
 	int numeroB;
 	int resultado;
+	int validar;
 
 	numeroA = ingresarNumero();
 	numeroB = ingresarNumero();
 
-	suma(numeroA, numeroB, &resultado);
+	validar = suma(numeroA, numeroB, &resultado);
 
-	printf("\nLa suma de los numero %d + %d es : %d", numeroA, numeroB, resultado);
+	if(validar == 1)
+	{
+		printf("\nLa suma de los numero %d + %d es : %d", numeroA, numeroB, resultado);
+	}
+	else
+	{
+		printf("No se pudo realizar la operacion.");
+	}
+
 
 	return 0;
 }
 
-void suma(int numeroA, int numeroB, int* resultado)
+int suma(int numeroA, int numeroB, int* resultado)
 {
-	*resultado = numeroA + numeroB;
+	int validar = 0;
+
+	if(resultado != NULL)
+	{
+		*resultado = numeroA + numeroB;
+
+		validar = 1;
+
+		return validar;
+	}
+
+	return validar;
 }
 
 int ingresarNumero()
